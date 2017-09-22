@@ -6,11 +6,11 @@ require 'mail_generator/version'
 Gem::Specification.new do |spec|
   spec.name          = "mail_generator"
   spec.version       = MailGenerator::VERSION
-  spec.authors       = ["藤本　聖也"]
-  spec.email         = ["seiya_fujimoto@waku-2.com"]
+  spec.authors       = ["mirai_koyomi"]
+  spec.email         = ["crossclose00@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{This is super useful by mail text generating.}
+  spec.description   = %q{This is super useful by mail text generating.:)}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
