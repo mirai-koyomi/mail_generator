@@ -30,12 +30,6 @@ module MailGenerator
 				env_name = @client.get_issue(issue_key).body.issue_type.name
 				env = ''
 				
-				case env_name
-				when 'はたらいく【HAT】'
-					env = 'HAT'
-				when 'とらばーゆ【TRN】'
-					env = 'TRN'
-				end
 			end
 			
 			private
