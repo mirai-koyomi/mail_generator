@@ -22,15 +22,18 @@ module MailGenerator
 			# @param issue_key [String] 対象となる課題の固有キー
 			# @return [String] 課題名称
 			def issue_name(issue_key)
-				name = @client.get_issue(issue_key).body.summary
-				return name.match(/(ă.*ă)*(\[.*\])*(?<name>.*)/)[:name]
+				return @client.get_issue(issue_key).body.summary
+				# gemとして切り出す場合を考慮し、
+				# 行う処理としてはかなり環境に依存しているので削除
+				# コメントアウトしている処理もタイミング見て、gem受け入れ先に転載
+				# return name.match(/(【.*】)*(\[.*\])*(?<name>.*)/)[:name]
 			end
 			
-			def issue_env(issue_key)
-				env_name = @client.get_issue(issue_key).body.issue_type.name
-				env = ''
-				
-			end
+			# 同上の理由で削除。
+			# def issue_env(issue_key)
+				# env_name = @client.get_issue(issue_key).body.issue_type.name
+				# env = ''
+			# end
 			
 			private
 			# BacklogのAPIに接続する

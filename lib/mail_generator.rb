@@ -1,5 +1,6 @@
 require "mail_generator/version"
 require "mail_generator/backlog"
+require "mail_generator/git"
 require "mail_generator/Util"
 
 module MailGenerator
@@ -9,4 +10,6 @@ end
 	
 	secret = MailGenerator::Util.load_secret_file
 	client = MailGenerator::Backlog::API.new(secret['space_id'], secret['api_key'], secret['project_key'])
-	git = MailGenerator::Git.new()
+	git = MailGenerator::Git::Repository.new('/Applications/XAMPP/xamppfiles/htdocs/devel/hat.task')
+	
+	p git
