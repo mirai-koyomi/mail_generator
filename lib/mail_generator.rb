@@ -1,7 +1,7 @@
 require "mail_generator/version"
 require "mail_generator/backlog"
-require "mail_generator/git"
-require "mail_generator/Util"
+require "main_generator/diff"
+require "mail_generator/util"
 
 module MailGenerator
 	def apc_generate(ticket, branch, reserved, apply_date, release_date)

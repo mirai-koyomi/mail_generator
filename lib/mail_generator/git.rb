@@ -1,9 +1,14 @@
 module MailGenerator
+	# gitを読み込み差分ファイルをまとめ上げる
 	class Git
-		# BacklogへのAPI接続を直接行う。
-		# @attr_reader client [Object] BacklogのAPIオブジェクト。gem化した際に外部から情報を柔軟に引き出せるよう、念のため読取だけ可能にしておく。
+		# pathからrepositoryを取得する
 		def initialize(repo_path)
-			@repo = repository(repo_path)
+			
+		end
+		
+		private
+		def repository(repo_path)
+			IO.popen()
 		end
 	end
 end
