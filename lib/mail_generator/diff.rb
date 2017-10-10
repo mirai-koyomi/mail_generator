@@ -18,22 +18,29 @@ module MailGenerator
 		# @return [Array] 編集が加えられたファイルのリスト。削除は除外している。
 		def compare_develop(branch)
 			file_ary = []
-			hash = start_point_hash branch
-			file_list = `cd #{@dir_path} && git checkout #{branch} && git pull origin && git diff --name-only --diff-filter=MACR #{hash} HEAD`
+			hash = start_point_hash(branch)
+			
+			# 最新の情報をプルし、削除以外の変更があったファイルの一覧を取得する。
+			output = `cd #{@dir_path} && git checkout #{branch} && git pull origin && git diff --name-only --diff-filter=MACR #{hash} HEAD`
 
-			file_list.each_line do |file_name|
+			output.each_line do |file_name|
 				file_ary << file_name.chomp
 			end
 			
-			return file_ary
+			# checkout、pullの戻り値を切り捨てる。
+			return file_ary.drop(2)
 		end
 		
-		# そのブランチが分岐したポイントをhash値で返す。
+		# そのブランチの分岐元となるコミットをhash値で返す。
 		# @param branch [String] 分岐点を調べたいブランチ名
 		# @return [String] ブランチが分岐したコミットのハッシュ値
 		def start_point_hash(branch)
+			dir = `cd #{@dir_path} && pwd`
 			commit_info = `cd #{@dir_path} && git fetch origin && git show-branch --sha1-name origin/develop origin/#{branch} | tail -1`
-			return commit_info.match(/\[(?<hash>[\d\w]*)\]/)[:hash]
+			hash = commit_info.match(/\[(?<hash>[\d\w]*)\]/)[:hash]
+			# コミットの情報からhash値のみを切り出す。
+
+			return hash
 		end
 	end
 end
